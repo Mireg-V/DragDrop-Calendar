@@ -11,10 +11,10 @@ const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement);
 
 root.render(
-  <CalendarProvider>
-    <LanguageProvider>
+  <LanguageProvider>
+    <CalendarProvider>
       <Header />
       <Main />
-    </LanguageProvider>
-  </CalendarProvider>
+    </CalendarProvider>
+  </LanguageProvider>
 );

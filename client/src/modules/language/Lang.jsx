@@ -2,12 +2,12 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 
 const locale = require('./locale.json');
 
-function getLanguagePack(languagePack = 'en') {
+function getLanguagePack(languagePack = 'us') {
   const translations = {};
-  const isLanguagePackValid = ['en', 'uk'].includes(languagePack);
+  const isLanguagePackValid = ['us', 'ua'].includes(languagePack);
 
   if (!languagePack || !isLanguagePackValid)
-    languagePack = 'en';
+    languagePack = 'us';
 
   for (const key in locale) {
     const prop = locale[key];
@@ -40,7 +40,7 @@ const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState(localStorage.getItem('language'));
 
   useEffect(() => {
-    const possibleLangs = ['uk', 'en']
+    const possibleLangs = ['ua', 'us']
     if (possibleLangs.includes(language)) {
       localStorage.setItem('language', language);
     } else {

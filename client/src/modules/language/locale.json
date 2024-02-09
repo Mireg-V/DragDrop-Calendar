@@ -1,15 +1,15 @@
 {
   "login": {
-    "uk": "Увійти",
-    "en": "Login"
+    "ua": "Увійти",
+    "us": "Login"
   },
   "weekdays": [
-    { "uk":  "Понеділок ", "en":  "Monday " },
-    { "uk":  "Вівторок ", "en":  "Tuesday " },
-    { "uk":  "Середа ", "en":  "Wednesday " },
-    { "uk":  "Четвер ", "en":  "Thursday " },
-    { "uk":  "Пʼятниця ", "en":  "Friday " },
-    { "uk":  "Субота ", "en":  "Saturday " },
-    { "uk":  "Неділя ", "en":  "Sunday " }
+    { "ua":  "Понеділок ", "us":  "Monday " },
+    { "ua":  "Вівторок ", "us":  "Tuesday " },
+    { "ua":  "Середа ", "us":  "Wednesday " },
+    { "ua":  "Четвер ", "us":  "Thursday " },
+    { "ua":  "Пʼятниця ", "us":  "Friday " },
+    { "ua":  "Субота ", "us":  "Saturday " },
+    { "ua":  "Неділя ", "us":  "Sunday " }
   ]
 }

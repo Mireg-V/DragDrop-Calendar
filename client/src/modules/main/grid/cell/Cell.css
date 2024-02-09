@@ -1,0 +1,26 @@
+.head-grid .cell {
+  text-align: center;
+  background-color: var(--c-24);
+}
+.head-grid .cell:first-child {
+  border-radius: 8px 0 0 8px;
+}
+.head-grid .cell:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.cell {
+  position: relative;
+  background-color: var(--c-32);
+  padding: 10px;
+}
+
+.cell.empty {
+  filter: brightness(0.6);
+}
+
+.cell.holiday::after {
+  content: "🎉";
+  position: absolute;
+  right: 8px;
+}

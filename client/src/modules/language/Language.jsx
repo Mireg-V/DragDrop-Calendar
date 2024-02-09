@@ -5,7 +5,7 @@ import './Language.css';
 function Language() {
   const { language, setLanguage } = useLanguage();
 
-  const availableLanguages = ['en', 'uk'];
+  const availableLanguages = ['us', 'ua'];
 
   return (
     <div className="language">
