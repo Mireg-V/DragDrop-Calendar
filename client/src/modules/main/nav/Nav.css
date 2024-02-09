@@ -1,0 +1,6 @@
+nav {
+  height: calc(100vh - 64px - 32px);
+  background-color: var(--w);
+  width: 48px;
+  border-radius: 8px;
+}

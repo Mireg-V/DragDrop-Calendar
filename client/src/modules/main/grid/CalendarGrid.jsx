@@ -3,15 +3,12 @@ import { useCalendar } from '../../../class/Calendar';
 import './CalendarGrid.css';
 import { useLanguage } from '../../language/Lang';
 import Cell from './cell/Cell';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 const CalendarGrid = () => {
   const { lang } = useLanguage();
-  const { currentDate, holidays } = useCalendar();
 
-  const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
-  const firstDayOfWeek = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay() - 1;
-
-  const prevMonthDays = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
 
   const renderHeadGrid = () => {
     const head = [];
@@ -20,42 +17,53 @@ const CalendarGrid = () => {
     }
     return head;
   };
-  const isHoliday = (day, currentMonth) => {
-    const year = currentDate.getFullYear();
-    const month = currentMonth + 1; // Месяцы в JavaScript считаются с 0
-    return holidays[year] && holidays[year].some(holiday => {
-      const holidayDate = new Date(holiday.date);
-      return holidayDate.getDate() === day && holidayDate.getMonth() + 1 === month;
-    });
-  };
+
+  
+  const { currentDate } = useCalendar();
+  const firstDayOfWeek = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
   
   const renderCalendarGrid = () => {
     const grid = [];
     let currentMonth = currentDate.getMonth();
+    let currentYear = currentDate.getFullYear();
     let currentMonthDay = 1;
-    let dayOfNextMonth = 0;
-
+    let dayOfNextMonth = 1;
+    const startOfWeekOffset = (firstDayOfWeek + 6) % 7;
+  
     for (let row = 0; row < 6; row++) {
       for (let col = 0; col < 7; col++) {
-        const isFirstRow = row === 0;
-        const isPrevMonth = isFirstRow && col < firstDayOfWeek;
-        const isNextMonth = currentMonthDay > daysInMonth || (currentMonth === 11 && isFirstRow && col >= firstDayOfWeek);
+        const isPrevMonth = row === 0 && col < startOfWeekOffset;
+        const isNextMonth = !isPrevMonth && currentMonthDay > daysInMonth(currentMonth, currentYear);
   
         let dayOfMonth;
+        let monthForCell = currentMonth;
+  
         if (isPrevMonth) {
-          dayOfMonth = prevMonthDays - firstDayOfWeek + col + 1;
+          const daysInPrevMonth = daysInMonth(currentMonth - 1, currentYear);
+          dayOfMonth = daysInPrevMonth - startOfWeekOffset + col + 1;
+          monthForCell = currentMonth - 1;
+          if (monthForCell === -1) {
+            monthForCell = 11;
+            currentYear -= 1;
+          }
         } else if (isNextMonth) {
-          dayOfNextMonth++;
+          dayOfMonth = dayOfNextMonth++;
+          monthForCell = currentMonth + 1;
+          if (monthForCell === 12) {
+            monthForCell = 0;
+            currentYear += 1;
+          }
         } else {
           dayOfMonth = currentMonthDay++;
         }
   
+        const cellDate = new Date(currentYear, monthForCell, dayOfMonth);
+  
         grid.push(
           <Cell
             key={`${row}-${col}`}
-            day={dayOfMonth || dayOfNextMonth}
+            date={cellDate}
             isOverflow={isPrevMonth || isNextMonth}
-            isHoliday={isHoliday(dayOfNextMonth > 0 ? dayOfNextMonth : dayOfMonth, dayOfNextMonth > 0 ? currentMonth + 1 : currentMonth)}
           />
         );
       }
@@ -64,11 +72,19 @@ const CalendarGrid = () => {
     return grid;
   };
   
+  const daysInMonth = (month, year) => {
+    return new Date(year, month + 1, 0).getDate();
+  };
+  
+  
+    
   return (
-    <>
+    <div className='calendar-wrapper'>
       <div className='head-grid'>{renderHeadGrid()}</div>
-      <div className="calendar-grid">{renderCalendarGrid()}</div>
-    </>
+      <DndProvider backend={HTML5Backend}>
+        <div className="calendar-grid">{renderCalendarGrid()}</div>
+      </DndProvider>
+    </div>
   );
 };
 

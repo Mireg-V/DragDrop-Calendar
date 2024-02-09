@@ -7,7 +7,7 @@ export const useCalendar = () => useContext(CalendarContext);
 
 export const CalendarProvider = ({ children }) => {
   const { language } = useLanguage();
-  const [holidays, setHolidays] = useState({});
+  const [events, setEvents] = useState({});
   const [longWeekends, setLongWeekends] = useState({});
   const [currentDate, setCurrentDate] = useState(localStorage.getItem('lastUsedData') ? new Date(localStorage.getItem('lastUsedData')) : new Date())
 
@@ -23,25 +23,53 @@ export const CalendarProvider = ({ children }) => {
     setCurrentDate(nextMonth);
   };
 
-  const getHolidays = async () => {
+  const getEvents = async () => {
     try {
       const response = await fetch(`https://date.nager.at/api/v3/PublicHolidays/${currentDate.getFullYear()}/${language}`, {
         method: 'GET'
       });
       const data = await response.json();
-      const formattedData = data.map(item => ({
-        ...item,
-        date: new Date(item.date)
-      }));
-      setHolidays(prevHolidays => {
+  
+      setEvents(prevEvents => {
         return {
-          ...prevHolidays,
-          [currentDate.getFullYear()]: formattedData
+          ...prevEvents,
+          ...formatEvents(data)
         };
       });
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const formatEvents = (data) => {
+    return data.reduce((acc, item) => {
+      const date = new Date(item.date);
+      const year = date.getFullYear();
+      const month = date.getMonth();
+      const day = date.getDate();
+  
+      acc[year] ??= {};
+      acc[year][month] ??= {};
+      acc[year][month][day] ??= [];      
+  
+      const existingEvent = acc[year][month][day].find(event => event.name === item.name);
+  
+      if (existingEvent) {
+        acc[year][month][day][existingEvent] = {
+          ...item,
+          date,
+          type: 'holiday'
+        };
+      } else {
+        acc[year][month][day].push({
+          ...item,
+          date,
+          type: 'holiday'
+        });
+      }
+  
+      return acc;
+    }, {});
   };
 
   const getLongWeekends = async () => {
@@ -68,8 +96,9 @@ export const CalendarProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (!holidays[currentDate.getFullYear()]) {
-      getHolidays();
+    console.log(events)
+    if (!events[currentDate.getFullYear()]) {
+      getEvents();
     }
     if (!longWeekends[currentDate.getFullYear()]) {
       getLongWeekends();
@@ -78,12 +107,12 @@ export const CalendarProvider = ({ children }) => {
   }, [currentDate]);
   
   useEffect(() => {
-    getHolidays();
+    getEvents();
     getLongWeekends();
   }, [language]);
   
   return (
-    <CalendarContext.Provider value={{ currentDate, holidays, longWeekends, setCurrentDate, moveToPreviousMonth, moveToNextMonth }}>
+    <CalendarContext.Provider value={{ currentDate, events, longWeekends, setCurrentDate, moveToPreviousMonth, moveToNextMonth }}>
       {children}
     </CalendarContext.Provider>
   );
