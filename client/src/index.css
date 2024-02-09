@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&display=swap');
+#root {
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background-image: url(https://cdn.impactium.fun/backgrounds/topography-21.svg);
+  background-color: var(--c-16);
+  background-position: top;
+  background-size: cover;
+  background-repeat: repeat;
+}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, section, summary,
+time, mark, audio, video, button, input {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: none;
+	outline: none;
+	-webkit-tap-highlight-color: none;
+	border: none;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+*,
+*::after,
+*::before {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0.3px;
+  font-family: 'Nunito', sans-serif;
+  color: var(--w);
+}
+ul {
+  list-style: none;
+}
+
+:root {
+  --c-0: #000000;
+  --c-0d: #0d0d0d;
+  --c-16: #161616;
+  --c-24: #242424;
+  --c-32: #323232;
+  --c-48: #484848;
+  --c-64: #646464;
+  --c-80: #808080;
+  --c-96: #929292;
+  --w: #e8e8e8;
+  --transition: cubic-bezier(.21,.29,0,.94);
+}
+.absolute {
+  position: absolute;
+}
+.flex {
+  display: flex;
+}
+.inline-flex {
+  display: inline-flex;
+}
+.flex-dir-row {
+  display: flex;
+  flex-direction: row;
+}
+.flex-dir-column {
+  display: flex;
+  flex-direction: column;
+}
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.align-center {
+  align-items: center;
+}
+.align-start {
+  align-items: flex-start;
+}
+.align-end {
+  align-items: flex-end;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-around {
+  justify-content: space-around;
+}
+.justify-evenly {
+  justify-content: space-evenly;
+}
+.none {
+  display: none;
+}
+.width-max-view {
+  width: 100vw;
+}
+.width-max-percent {
+  width: 100%;
+}
+.height-max-view {
+  height: 100vh;
+}
+.height-max-percent {
+  height: 100%;
+}
+.invert {
+  filter: invert(100%);
+}
+.pointer {
+  cursor: pointer !important;
+}
+.no-events {
+  pointer-events: none;
+}

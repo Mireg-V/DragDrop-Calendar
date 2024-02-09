@@ -1,0 +1,16 @@
+.calendar-grid {
+  height: calc(100vh - 64px);
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.cell {
+  border: 1px solid #ccc;
+  background-color: #242424e8;
+  padding: 10px;
+  text-align: center;
+}
+
+.empty {
+}
