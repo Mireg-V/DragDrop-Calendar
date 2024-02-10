@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useCalendar } from '../../../class/Calendar';
 import './CalendarGrid.css';
 import { useLanguage } from '../../language/Lang';
@@ -6,9 +6,20 @@ import Cell from './cell/Cell';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
-const CalendarGrid = () => {
+const CalendarGrid = ({ setIsNavOpened, isNavOpened, setDate }) => {
   const { lang } = useLanguage();
+  const { currentDate, createEvent, deleteEvent, formatDateString, setEditMode } = useCalendar();
 
+  const onDropEvent = (event, targetDate) => {
+    deleteEvent(event);
+  
+    const newEvent = {
+      ...event,
+      date: formatDateString(targetDate)
+    };
+  
+    createEvent(newEvent);
+  };
 
   const renderHeadGrid = () => {
     const head = [];
@@ -18,8 +29,6 @@ const CalendarGrid = () => {
     return head;
   };
 
-  
-  const { currentDate } = useCalendar();
   const firstDayOfWeek = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
   
   const renderCalendarGrid = () => {
@@ -64,6 +73,8 @@ const CalendarGrid = () => {
             key={`${row}-${col}`}
             date={cellDate}
             isOverflow={isPrevMonth || isNextMonth}
+            onDropEvent={onDropEvent}
+            onClick={() => handleCellClick(cellDate)}
           />
         );
       }
@@ -72,14 +83,21 @@ const CalendarGrid = () => {
     return grid;
   };
   
+  const handleCellClick = (clickedDate) => {
+    const year = clickedDate.getFullYear();
+    const month = clickedDate.getMonth();
+    const day = clickedDate.getDate();
+    setEditMode(false);
+    setIsNavOpened(true);
+    setDate(formatDateString(new Date(year, month, day)));
+  };
+
   const daysInMonth = (month, year) => {
     return new Date(year, month + 1, 0).getDate();
   };
-  
-  
-    
+
   return (
-    <div className='calendar-wrapper'>
+    <div id='calendarGrid' className={`calendar-wrapper ${!isNavOpened ? 'width-max-percent' : ''}`}>
       <div className='head-grid'>{renderHeadGrid()}</div>
       <DndProvider backend={HTML5Backend}>
         <div className="calendar-grid">{renderCalendarGrid()}</div>

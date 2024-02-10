@@ -11,5 +11,57 @@
     { "ua":  "Пʼятниця ", "us":  "Friday " },
     { "ua":  "Субота ", "us":  "Saturday " },
     { "ua":  "Неділя ", "us":  "Sunday " }
-  ]
+  ],
+  "eventTitle": {
+    "ua": "Назва події",
+    "us": "Event title"
+  },
+  "typeEventTitle": {
+    "ua": "Введіть назву події",
+    "us": "Enter event title"
+  },
+  "chooseDate": {
+    "ua": "Оберіть дату:",
+    "us": "Choose date:"
+  },
+  "createEvent": {
+    "ua": "Додати в календар",
+    "us": "Create event"
+  },
+  "chooseTitle": {
+    "ua": "Назва події:",
+    "us": "Event title:"
+  },
+  "addEvent": {
+    "ua": "Створити подію",
+    "us": "Add event"
+  },
+  "editEvent": {
+    "ua": "Редагувати подію",
+    "us": "Edit event"
+  },
+  "meet": {
+    "ua": "Зустріч",
+    "us": "Meeting"
+  },
+  "date": {
+    "ua": "Побачення",
+    "us": "Date"
+  },
+  "birthday": {
+    "ua": "День народження",
+    "us": "Birthday"
+  },
+  "holiday": {
+    "ua": "Свято",
+    "us": "Holiday"
+  },
+  "searchByTitle": {
+    "ua": "Пошук за назвою",
+    "us": "Search by title"
+  },
+  "seemsNothing": {
+    "ua": "Здається тут нічого немає...",
+    "us": "There seems to be nothing here..."
+  }
 }

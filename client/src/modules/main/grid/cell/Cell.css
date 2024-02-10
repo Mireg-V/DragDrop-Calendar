@@ -9,7 +9,6 @@
   position: relative;
   background-color: var(--c-32);
   padding: 10px;
-  cursor: pointer;
 }
 .head-grid .cell {
   text-align: center;
@@ -22,32 +21,19 @@
 }
 .cell h5 {
   margin-bottom: 8px;
+  flex: 1;
 }
-.cell .eventList {
-  height: calc(100% - 24px);
-  display: grid;
-  gap: 4px;
-  grid-template-rows: repeat(2, 1fr);
+.cell h5 span {
+  color: var(--c-64);
 }
-.cell .eventItem {
-  cursor: grab;
+.cell .header {
   display: flex;
-  align-items: center;
-  background: var(--c-16);
+  flex-direction: row;
+}
+.cell .header img {
+  height: 20px;
+  background-color: var(--c-0d);
+  padding: 2px;
   border-radius: 4px;
-  padding: 4px;
-  padding-left: 16px;
-  position: relative;
-}
-.cell .eventItem.grabbed {
-  cursor: grabbing;
-}
-.cell .eventItem::after {
-  content: "";
-  border-radius: 4px 0 0 4px;
-  height: 100%;
-  position: absolute;
-  left: 0px;
-  width: 8px;
-  background-color: #4282e2;
+  cursor: pointer;
 }

@@ -1,0 +1,83 @@
+.cell .eventList {
+  height: calc(100% - 24px);
+  display: grid;
+  gap: 4px;
+  grid-template-rows: repeat(2, 1fr);
+}
+.cell .eventItem {
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  background: var(--c-16);
+  border-radius: 4px;
+  padding: 4px;
+  padding-left: 16px;
+  overflow: hidden;
+  position: relative;
+}
+.cell .eventItem p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  text-wrap: nowrap;
+}
+.cell .eventItem.grabbed {
+  cursor: grabbing;
+}
+.cell .eventItem.blocked {
+  padding-left: 32px;
+  pointer-events: none;
+  cursor: default;
+}
+.cell .eventItem.blocked::before {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 2px;
+  left: 12px;
+  content: '';
+  height: 18px;
+  width: 18px;
+  background-image: url(https://cdn.impactium.fun/ux/lock24p.svg);
+  background-color: var(--c-16);
+  background-position: center;
+  background-size: cover;
+}
+.cell .eventItem::after {
+  content: "";
+  border-radius: 4px 0 0 4px;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  width: 8px;
+}
+.cell .eventItem.holiday::after {
+  background-color: #4282e2;
+}
+.cell .eventItem.meet::after {
+  background-color: #a1ffa1;
+}
+.cell .eventItem.birthday::after {
+  background-color: #fdff86;
+}
+.cell .eventItem.date::after {
+  background-color: #e17dff;
+}
+.cell .eventItem .remove {
+  position: absolute;
+  top: 0;
+  right: -20px;
+  transition: all 0.5s var(--transition);
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
+}
+
+.cell .eventItem:hover .remove {
+  right: 0px;
+}
+
+.cell .eventItem .remove img {
+  height: 16px;
+  width: 16px;
+}

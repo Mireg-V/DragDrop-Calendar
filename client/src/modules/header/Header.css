@@ -35,3 +35,62 @@ header .date-chooser button:first-child {
 header .date-chooser button:last-child {
   background-image: url(https://cdn.impactium.fun/ui/arrow-right.svg);
 }
+header .search {
+  display: flex;
+  width: 50%;
+  justify-self: end;
+  position: relative;
+  flex-direction: column;
+}
+header .search input {
+  font-weight: 600;
+  background: var(--w);
+  color: var(--c-0d);
+  height: 40px;
+  border-radius: 8px;
+  padding: 8px;
+}
+header .search ul {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 3;
+  top: 40px;
+  position: absolute;
+  background-color: var(--c-0d);
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+}
+header .search ul li {
+  cursor: pointer;
+  display: flex;
+  max-width: 100%;
+  align-items: center;
+  background: var(--c-32);
+  border-radius: 4px;
+  padding: 8px 4px;
+  padding-left: 16px;
+  position: relative;
+  overflow: hidden;
+}
+header .search ul li::after {
+  content: "";
+  border-radius: 4px 0 0 4px;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  width: 8px;
+}
+header .search ul li.holiday::after {
+  background-color: #4282e2;
+}
+header .search ul li.meet::after {
+  background-color: #a1ffa1;
+}
+header .search ul li.birthday::after {
+  background-color: #fdff86;
+}
+header .search ul li.date::after {
+  background-color: #e17dff;
+}
