@@ -6,7 +6,7 @@ import { useCalendar } from '../../../class/Calendar';
 
 const Nav = ({ isNavOpened, setIsNavOpened, date }) => {
   const { lang } = useLanguage();
-  const { createEvent, sortedEvents, editMode, formatDateString } = useCalendar();
+  const { createEvent, sortedEvents, editMode } = useCalendar();
   const [event, setEvent] = useState({
     type: editMode.type || false,
     date: editMode.date || date || false,
@@ -34,13 +34,12 @@ const Nav = ({ isNavOpened, setIsNavOpened, date }) => {
 
 
   function exportAsPNG() {
-    const container = document.getElementById('calendarGrid'); // Замените 'yourContainerId' на реальный идентификатор вашего контейнера
+    const container = document.getElementById('calendarGrid');
     html2canvas(container).then((canvas) => {
       const link = document.createElement('a');
       link.href = canvas.toDataURL('image/png');
       link.download = 'exported_image.png';
   
-      // Добавляем элемент "a" в DOM и эмулируем клик для скачивания изображения
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -51,12 +50,10 @@ const Nav = ({ isNavOpened, setIsNavOpened, date }) => {
     const jsonContent = JSON.stringify(sortedEvents, null, 2);
     const blob = new Blob([jsonContent], { type: 'application/json' });
   
-    // Создаем элемент "a" для загрузки JSON файла
     const link = document.createElement('a');
     link.href = window.URL.createObjectURL(blob);
     link.download = 'sortedEvents.json';
   
-    // Добавляем элемент "a" в DOM и эмулируем клик для скачивания файла
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -76,8 +73,8 @@ const Nav = ({ isNavOpened, setIsNavOpened, date }) => {
     <nav className={isNavOpened ? 'opened' : ""}>
       <button className="controller" onClick={() => {setIsNavOpened(!isNavOpened)}}>
         {isNavOpened 
-          ? <img src='https://cdn.impactium.fun/ux/close-red.svg' />
-          : <img src='https://cdn.impactium.fun/ux/plus-white.svg' />
+          ? <img src='https://cdn.impactium.fun/ux/close-red.svg' alt=''/>
+          : <img src='https://cdn.impactium.fun/ux/plus-white.svg' alt=''/>
         }
       </button>
       <div className='settings'>
@@ -109,12 +106,12 @@ const Nav = ({ isNavOpened, setIsNavOpened, date }) => {
         <div className='picker type'>
           {typeOptions.map((option) => (
             <div key={option.type} onClick={() => setEventTypeHandler(option.type)} className={event.type ? option.type === event.type ? 'picked' : 'not' : 'picked'}>
-              <img src={`https://em-content.zobj.net/source/apple/354/${option.icon}`} />
+              <img src={`https://em-content.zobj.net/source/apple/354/${option.icon}`} alt='' />
               <p>{option.label}</p>
             </div>
           ))}
         </div>
-        <button className={`create-event ${event.date && event.title && event.type ? 'active' : ''}`} onClick={() => createEvent(event)}>{editMode ? lang.editEvent : lang.createEvent}</button>
+        <button className={`create-event ${event.date && event.title && event.type ? 'active' : ''}`} onClick={() => createEvent(event, editMode)}>{editMode ? lang.editEvent : lang.createEvent}</button>
         <div className='export'>
           <button onClick={downloadJSON}>Export as JSON</button>
           <button onClick={exportAsPNG}>Export as PNG</button>

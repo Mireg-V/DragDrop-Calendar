@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.32b2be06.css",
-    "main.js": "/static/js/main.e13e2fc7.js",
-    "index.html": "/index.html",
-    "main.32b2be06.css.map": "/static/css/main.32b2be06.css.map",
-    "main.e13e2fc7.js.map": "/static/js/main.e13e2fc7.js.map"
+    "main.css": "/DragDrop-Calendar/static/css/main.32b2be06.css",
+    "main.js": "/DragDrop-Calendar/static/js/main.7685abca.js",
+    "index.html": "/DragDrop-Calendar/index.html",
+    "main.32b2be06.css.map": "/DragDrop-Calendar/static/css/main.32b2be06.css.map",
+    "main.7685abca.js.map": "/DragDrop-Calendar/static/js/main.7685abca.js.map"
   },
   "entrypoints": [
     "static/css/main.32b2be06.css",
-    "static/js/main.e13e2fc7.js"
+    "static/js/main.7685abca.js"
   ]
 }

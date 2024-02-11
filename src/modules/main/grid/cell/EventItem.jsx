@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDrag } from 'react-dnd';
 import { ItemTypes } from './constants';
 import { useCalendar } from '../../../../class/Calendar';
@@ -27,7 +27,7 @@ const EventItem = ({ event }) => {
     >
       <p>{event.title}</p>
       <div className="remove" onClick={() => deleteEvent(event)}>
-        <img src='https://cdn.impactium.fun/ux/close-red.svg' />
+        <img src='https://cdn.impactium.fun/ux/close-red.svg' alt='Close' />
       </div>
     </div>
   );

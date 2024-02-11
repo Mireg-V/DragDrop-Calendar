@@ -43,7 +43,7 @@ export const CalendarProvider = ({ children }) => {
     }
   };
 
-  const createEvent = (event) => {
+  const createEvent = (event, oldEvent) => {
     if (!event.date || !event.title || !event.type) {
       return;
     }
@@ -66,12 +66,16 @@ export const CalendarProvider = ({ children }) => {
         return prevEvents;
       
       updatedEvents[year][month][day].push(event);
-  
+      
+      if (oldEvent)
+        deleteEvent(oldEvent);
+
       return updatedEvents;
     });
   };
   
   const deleteEvent = (event) => {
+    console.log(event)
     if (!event.date || !event.title || !event.type) {
       return;
     }

@@ -10,7 +10,9 @@ const Main = () => {
   const [date, setDate] = useState();
 
   useEffect(() => {
-    setIsNavOpened(true);
+    if (editMode) {
+      setIsNavOpened(true);
+    }
   }, [editMode])
 
   return (

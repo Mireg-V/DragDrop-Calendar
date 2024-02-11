@@ -44,7 +44,7 @@ const LanguageProvider = ({ children }) => {
     if (possibleLangs.includes(language)) {
       localStorage.setItem('language', language);
     } else {
-      setLanguage('en')
+      setLanguage('us')
     }
   }, [language]);
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useCalendar } from '../../../class/Calendar';
 import './CalendarGrid.css';
 import { useLanguage } from '../../language/Lang';

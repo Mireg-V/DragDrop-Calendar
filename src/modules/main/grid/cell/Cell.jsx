@@ -25,7 +25,7 @@ import './Cell.css';
     <div ref={drop} className={`cell ${isOverflow ? 'empty' : ''} ${isOver && canDrop ? 'hovered' : ''}`}>
       <div className="header">
         <h5>{date.getDate()}<span>.{(date.getMonth() + 1).toString().padStart(2, '0')}</span></h5>
-        <img onClick={() => onClick && onClick(date)} src='https://cdn.impactium.fun/ux/plus-white.svg' />
+        <img onClick={() => onClick && onClick(date)} src='https://cdn.impactium.fun/ux/plus-white.svg' alt=''/>
 
       </div>
       <div className='eventList'>
